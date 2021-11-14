@@ -1,12 +1,18 @@
 .DS_Store
 node_modules
 /dist
-
-
+*.sketch
+*.fig
+*.xd
+.DS_Store
+.prettierignore
+*.md
+!README.md
+/build
+guide.html
 # local env files
 .env.local
 .env.*.local
-
 # Log files
 npm-debug.log*
 yarn-debug.log*

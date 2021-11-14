@@ -1,0 +1,193 @@
+@use '../abstracts/_colors.scss'as colors;
+@use '../components/_buttons.scss'as button;
+@use "../abstracts/mixins"as mix;
+
+section {
+    margin-bottom: 20px;
+}
+
+.information {
+    width: 92%;
+    margin: 10px auto;
+    max-width: 600px;
+
+    span:first-child {
+        color: colors.$orange;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7em;
+    }
+
+    h2,
+    h3 {
+        margin: 10px 0;
+        color: colors.$vark-blue;
+    }
+
+    h2 {
+        margin-top: 15px;
+        max-width: 440px;
+    }
+
+    p {
+        color: colors.$dark-grayish-blue;
+        margin: 0;
+        margin-top: 15px;
+        font-weight: 500;
+        font-size: 0.87em;
+        line-height: 23px;
+        max-width: 450px;
+    }
+
+    .price {
+        display: grid;
+        grid-template-columns: auto 100px 1fr;
+        margin: 10px 0;
+
+        h3,
+        span {
+            align-self: center;
+        }
+
+        h3 {
+            font-size: 1.65em;
+            margin-right: 15px;
+            color: colors.$vark-blue;
+        }
+
+        span:nth-child(2) {
+            color: lighten(colors.$orange, 3%);
+            background: lighten(colors.$orange, 37%);
+            font-weight: bold;
+            width: max-content;
+            padding: 2px 7px;
+            border-radius: 5px;
+        }
+
+        span:last-child {
+            color: colors.$grayish-blue;
+            align-self: center;
+            justify-self: end;
+            text-decoration: line-through;
+            font-size: 1em;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+    }
+
+    .bar-sum {
+        @include mix.centered(row, center, space-between);
+        padding: 0 10px;
+        height: 53px;
+        margin: 18px 0;
+        background: colors.$light-grayish-blue;
+        border-radius: 5px;
+        color: black;
+        font-weight: bold;
+
+        .minus,
+        .sum {
+            @include mix.centered(row, center, center);
+            width: 40px;
+            height: 40px;
+            border:none;
+            background:none;
+            outline:0;
+            cursor: pointer;
+
+            svg,
+            svg path {
+                fill: #FF7E1B;
+                transition: all 0.2s ease;
+            }
+
+            &:hover {
+
+                svg,
+                svg path {
+                    fill: lighten(#FF7E1B, 10%);
+                }
+
+            }
+        }
+    }
+
+    .cart-button {
+        @include button.checkout;
+        margin: 10px 0;
+        box-shadow: 0px 3px 9px 0px #ff7d1ab5;
+        user-select: none;
+    }
+
+    .cart-button svg {
+        margin-right: 15px;
+    }
+
+    .cart-button svg path {
+        fill: white;
+    }
+
+
+}
+
+
+
+@media(min-width: 1023px) {
+    section {
+        @include mix.centered(row, center, space-between);
+        max-width: 1178px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .information {
+        width: 45%;
+        margin: 0;
+
+        h2 {
+            font-size: 2.15em;
+            line-height: 44px;
+        }
+
+        p {
+            margin-top: 35px;
+            font-size: 0.80em;
+            max-width: 443px;
+        }
+
+        .price {
+            margin-top: 20px;
+            margin-bottom: 0;
+            width: max-content;
+            grid-template-columns: auto 100px;
+            grid-template-rows: 40px 30px;
+
+            span:last-child {
+                justify-self: start;
+            }
+        }
+
+        .bar-sum {
+            max-width: 135px;
+            width: 100%;
+        }
+
+        .check-product {
+            @include mix.centered(row, center, space-between);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        button {
+            margin-right: 10px;
+            width: 100%;
+            margin: 30px 0;
+            max-width: 269px;
+            font-size: 0.93em;
+        }
+    }
+
+
+}

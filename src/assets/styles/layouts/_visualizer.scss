@@ -1,0 +1,260 @@
+@use "../abstracts/mixins"as mix;
+@use '../abstracts/colors'as colors;
+
+.visualizer,
+.lightbox {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+
+    img {
+        width: 100%;
+        height: 318px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .collection-images {
+        @include mix.centered(row, center, space-between);
+        width: 100%;
+        margin-top: 25px;
+
+        .image,
+        .image img {
+            position: relative;
+            max-width: 80px;
+            max-height: 80px;
+            width: 100%;
+            border-radius: 13px;
+            cursor: pointer;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                background: white;
+                opacity: 0;
+                z-index: 0;
+                border-radius: 13px;
+                border: 0px colors.$orange solid;
+                transition: all 0.2s ease;
+            }
+
+            &:hover:after {
+                opacity: 0.8;
+            }
+
+        }
+
+        .image-selected {
+            border-radius: 13px;
+            border: none;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                background: white;
+                opacity: 0.8;
+                z-index: 0;
+                border-radius: 13px;
+                border: 2px colors.$orange solid;
+            }
+        }
+
+    }
+
+    .arrow-right,
+    .arrow-left {
+        position: absolute;
+        @include mix.centered(column, center, center);
+        top: 0;
+        bottom: 0;
+        width: 45px;
+        height: 45px;
+        margin: auto;
+        background: white;
+        border-radius: 100%;
+        cursor: pointer;
+
+        svg,
+        svg path {
+            stroke: #1D2026;
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+
+            svg,
+            svg path {
+                stroke: colors.$orange;
+            }
+        }
+    }
+
+    .arrow-right {
+        right: 10px;
+    }
+
+    .arrow-left {
+        left: 10px;
+    }
+
+    .arrow-right svg,
+    .arrow-left svg {
+        transform: scale(0.9);
+    }
+
+    .arrow-left svg {
+        transform: translateX(-2px);
+    }
+}
+
+.lightbox,
+.lightbox:after {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    max-width: unset;
+    transition: all 0.3s ease;
+
+}
+
+.lightbox {
+    max-width: 550px;
+    width: 40%;
+    z-index: 100;
+
+
+    .show-image {
+        width: 88%;
+        cursor: default;
+    }
+
+    .collection-images {
+        width: 100%;
+        max-width: 415px !important;
+
+        .image {
+            max-width: 85px;
+            max-height: 85px;
+
+            img {
+                width: 100%;
+                max-width: 85px;
+                max-height: 85px;
+            }
+
+            &:after {
+                width: 100%;
+            }
+
+        }
+
+        .image-selected {
+
+            &:after {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    label {
+        padding: 10px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        transform: scale(1.2);
+        margin-left: 84%;
+        cursor: pointer;
+
+        svg,
+        svg path {
+            fill: colors.$white !important;
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+
+            svg,
+            svg path {
+                fill: colors.$orange !important;
+            }
+
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        max-width: 500px;
+    }
+
+    .arrow-right {
+        right: 1px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .arrow-left {
+        left: 1px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .collection-images {
+        max-width: 375px;
+    }
+}
+
+.lightbox:after {
+    content: "";
+    background: #000000b8;
+    z-index: -1;
+}
+
+@media(min-width:1023px) {
+    .visualizer {
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 410px;
+            border-radius: 20px;
+        }
+
+        .arrows {
+            display: none;
+        }
+
+    }
+
+    #lightbox:checked~.lightbox,
+    #lightbox:checked~.lightbox:after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+}

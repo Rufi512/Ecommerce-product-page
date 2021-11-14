@@ -1,0 +1,410 @@
+@use '../abstracts/colors'as colors;
+@use "../abstracts/mixins"as mix;
+@use '../components/_buttons.scss'as button;
+
+
+header {
+    position: relative;
+    @include mix.centered(row, center, space-between);
+    width: 90%;
+    height: 70px;
+    margin: 0px auto;
+    max-width: 1045px;
+
+    nav {
+        label {
+            @include mix.centered(row, center, center);
+            padding: 5px;
+        }
+
+        margin-right:10px;
+
+        ul {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            max-width: 280px;
+            padding: 0;
+            padding-top: 10px;
+            margin-top: 0;
+            z-index: 10000;
+            transform: translate(-100%);
+            visibility: hidden;
+            transition: all 0.3s ease;
+
+            &:after,
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: black;
+                z-index: 0;
+                width: 200vw;
+                height: 100%;
+                opacity: 0;
+                z-index: -1;
+                transition: all 0.3s ease;
+            }
+
+            &:before {
+                background: white;
+                width: 100%;
+                z-index: 0;
+                opacity: 1;
+            }
+
+            label {
+                top: 20px;
+                margin-left: 0px;
+                justify-content: start;
+                margin-bottom: 20px;
+                padding: 10px;
+                z-index: 1000;
+            }
+
+            li {
+                padding: 5px 2px;
+                margin: 10px 0;
+                margin-left: 20px;
+                list-style: none;
+                z-index: 1000;
+
+                a {
+                    color: colors.$vark-blue;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        #topBar:checked~ul {
+            transform: translateY(0);
+            visibility: visible;
+
+            &:after {
+                opacity: 0.3;
+            }
+        }
+    }
+
+    .navigation {
+        @include mix.centered(row, baseline, space-between);
+        width: max-content;
+
+        svg {
+            fill: colors.$dark-grayish-blue;
+            margin-left: 12px;
+        }
+    }
+
+    .items {
+        width: 70px;
+        @include mix.centered(row, center, space-between);
+
+        .card-items {
+            position: relative;
+            cursor: pointer;
+
+            span {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                font-size: 0.5em;
+                background: darken(colors.$orange, 4%);
+                padding: 0 6px;
+                border-radius: 300px;
+                color: white;
+            }
+
+            svg,
+            svg path {
+                fill: #69707D;
+                transition: all 0.3s ease;
+            }
+
+            &:hover {
+
+                svg,
+                svg path {
+                    fill: #000000;
+                }
+            }
+
+        }
+
+        img {
+            width: 28px;
+        }
+    }
+
+}
+
+.basket {
+    position: absolute;
+    width: 96%;
+    max-width: 367px;
+    top: 81px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    min-height: 259px;
+    background: white;
+    padding-top: 10px;
+    box-shadow: 0px 3px 5px 1px #83849b57;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    h3 {
+        margin: 0;
+        font-size: 1em;
+        padding: 0 20px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px lighten(colors.$dark-grayish-blue, 40%) solid;
+        color: colors.$vark-blue;
+    }
+
+    .empty-text {
+        position: relative;
+        height: 140px;
+        @include mix.centered(row, center, center);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 0.9em;
+        color: darken(colors.$grayish-blue, 25%);
+        font-weight: bold;
+    }
+
+    button {
+        position: relative;
+        @include button.checkout;
+        width: 85%;
+        margin: 10px auto;
+        left: 0;
+        right: 0;
+        font-size: 0.9em;
+        bottom: 0px;
+        user-select: none;
+    }
+
+    .container-products-checkout {
+        div img {
+            width: 55px;
+        }
+
+        .product-check {
+            margin-top: 10px;
+            display: grid;
+
+            grid-template-columns: 94px minmax(100px, 30%) auto 41px;
+            grid-template-rows: 46px;
+            grid-auto-flow: column;
+            gap: 0px 0px;
+            height: 100px;
+            grid-template-areas: "checkout-image checkout-title checkout-title trash-icon"
+                "checkout-image checkout-price checkout-price trash-icon"
+                "checkout-image checkout-total checkout-total trash-icon";
+        }
+
+        .checkout-image {
+            grid-area: checkout-image;
+            align-self: center;
+            justify-self: center;
+            margin-bottom: 0;
+            border-radius: 5px;
+        }
+
+        .checkout-title {
+            font-weight: 500;
+            grid-area: checkout-title;
+            font-size: 1.02em;
+            align-self: start;
+            color: colors.$dark-grayish-blue;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            max-width: 175px;
+        }
+
+        .checkout-price {
+            width: max-content;
+            grid-area: checkout-price;
+            align-self: start;
+            margin: 0;
+            color: colors.$dark-grayish-blue;
+        }
+
+        .checkout-total {
+            grid-area: checkout-total;
+            align-self: start;
+            font-weight: bold;
+            color: colors.$vark-blue;
+        }
+
+        .trash-icon {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            grid-area: trash-icon;
+            cursor: pointer;
+        }
+    }
+}
+
+#basket-check:checked~.basket {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media(min-width:375px) {
+    .container-products-checkout {
+        .product-check {
+            grid-template-areas: "checkout-image checkout-title checkout-title trash-icon"
+                "checkout-image checkout-price checkout-total trash-icon" !important;
+
+            .checkout-image {
+                margin-bottom: 15px !important;
+            }
+        }
+    }
+}
+
+
+@media(min-width:1023px) {
+    header {
+        margin: 10px auto;
+        height: 85px;
+        align-items: baseline;
+        border-bottom: 2px lighten(colors.$dark-grayish-blue, 40%) solid;
+        margin-bottom: 80px;
+
+        .navigation {
+            width: auto;
+            visibility: visible;
+
+            svg {
+                margin-left: 0;
+            }
+
+            label {
+                display: none;
+            }
+
+            ul {
+                position: relative;
+                margin-left: 25px;
+                max-width: max-content;
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+                z-index: 0;
+                @include mix.centered(row, center, space-between);
+
+                &:before,
+                &:after {
+                    all: unset;
+                }
+
+                li {
+                    margin-left: 0;
+
+                    a {
+                        position: relative;
+                        color: darken(colors.$grayish-blue, 13%);
+                        padding: 3px 4px;
+                        margin: 0 7px;
+                        font-size: 0.8em;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                        @include mix.underline_hover(100%, 2px, 0px, 0px, -37px, 0px, colors.$orange);
+
+                        &:hover {
+                            color: darken(colors.$grayish-blue, 63%);
+                        }
+                    }
+
+                    a:nth-child(1) {
+                        margin-left: 12px;
+                    }
+
+                }
+            }
+        }
+
+        .items {
+            width: 110px !important;
+            @include mix.centered(row, center, space-between);
+
+            img {
+                width: 51px;
+                transition: all 0.2s ease;
+            }
+
+            a {
+                img {
+                    border: 2px #00000000 solid;
+                    border-radius: 50%;
+
+                    &:hover {
+                        border: 2px colors.$orange solid;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    .basket {
+        top: 81px;
+        right: -25px;
+        left: auto;
+        bottom: auto;
+        max-width: 360px;
+
+        .container-products-checkout {
+            .product-check {
+                grid-template-columns: auto minmax(100px, 29%) auto 26px;
+            }
+
+            .checkout-title {
+                font-weight: 500;
+                grid-area: checkout-title;
+                font-size: 1.02em;
+                align-self: start;
+                color: colors.$dark-grayish-blue;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: unset;
+                width: 100%;
+                max-width: unset;
+            }
+
+
+        }
+    }
+}
+
+@media(min-width:1223px) {
+    .basket {
+        right: -83px
+    }
+}
