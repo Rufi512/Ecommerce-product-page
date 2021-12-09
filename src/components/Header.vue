@@ -24,9 +24,7 @@
     <span v-if="onQuantiy > 0">{{onQuantiy}}</span>
     <CartIcon/>
   </label>
-  <a href="#">
   <img class="avatar" :src="avatar">
-  </a>
 </div>
 
 <div class="basket">

@@ -147,14 +147,15 @@
     z-index: 100;
 
 
-    .show-image {
+     .show-image {
         width: 88%;
         cursor: default;
     }
 
     .collection-images {
         width: 100%;
-        max-width: 415px !important;
+        max-width: 415px;
+
 
         .image {
             max-width: 85px;
@@ -224,15 +225,21 @@
         height: 50px;
     }
 
-    .collection-images {
-        max-width: 375px;
-    }
 }
 
 .lightbox:after {
     content: "";
     background: #000000b8;
     z-index: -1;
+}
+
+@media(min-width:415px){
+    .visualizer{
+        img{
+                object-position: top;
+                height: 405px;
+            }   
+    }
 }
 
 @media(min-width:1023px) {
@@ -257,4 +264,17 @@
     }
 
 
+}
+
+@media(max-height:500px){
+    .lightbox{
+        .show-image {
+        width: auto;
+        height: 55%;
+        max-width:484px;
+        max-height:484px;
+        min-height: 300px;
+        cursor: default;
+    }
+    }
 }

@@ -1,12 +1,12 @@
 <template>
     <section>
         <Visualizer/>
-        <div class="information">
+        <div class="information" role="contentinfo">
             <span>Sneaker Company</span>
-            <h2>{{product.title}}</h2>
+            <h1>{{product.title}}</h1>
             <p>{{product.description}}</p>
             <div class="price">
-                <h3>${{product.price}}</h3>
+                <h2>${{product.price}}</h2>
                 <span>{{product.offer}}</span>
                 <span>${{product.price_original}}</span>
             </div>

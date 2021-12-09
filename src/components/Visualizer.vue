@@ -2,13 +2,13 @@
   <input type="checkbox" id="lightbox" hidden>
 <div class="visualizer">
 <label for="lightbox" aria-label="lightbox">
-<img :src="products_images[selected_image]"/>
+<img :src="products_images[selected_image]" alt="image-product"/>
 </label>
 <div class="arrows arrow-left" @click="passImage(false)"><ArrowLeft/></div>
 <div class="arrows arrow-right" @click="passImage(true)"><ArrowNext/></div>
 <div class="collection-images" v-if="window_size > 1023">
   <div v-for="(thumbnail, index) in products_images_thumbs" :key="index" @click="changeImage(index)" v-bind:class="[index === selected_image ? 'image-selected' : '', 'image']">
-  <img :src="thumbnail" :alt="index"  />
+  <img :src="thumbnail" :alt="'image-thumbnail-' + index"  />
   </div>
 </div>
 </div>
@@ -20,7 +20,7 @@
 <div class="arrows arrow-right" @click="passImage(true)"><ArrowNext/></div>
 <div class="collection-images" v-if="window_size > 1023">
   <div v-for="(thumbnail, index) in products_images_thumbs" :key="index" @click="changeImage(index)" v-bind:class="[index === selected_image ? 'image-selected' : '', 'image']">
-  <img :src="thumbnail" :alt="index"  />
+  <img :src="thumbnail" :alt="'image-thumbnail-' + index"  />
   </div>
 </div>
 </div>

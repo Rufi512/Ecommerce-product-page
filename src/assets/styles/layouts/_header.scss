@@ -293,7 +293,7 @@ header {
         margin: 10px auto;
         height: 85px;
         align-items: baseline;
-        border-bottom: 2px lighten(colors.$dark-grayish-blue, 40%) solid;
+        border-bottom: 1px lighten(colors.$dark-grayish-blue, 40%) solid;
         margin-bottom: 80px;
 
         .navigation {
@@ -334,7 +334,7 @@ header {
                         font-size: 0.8em;
                         font-weight: 500;
                         transition: all 0.3s ease;
-                        @include mix.underline_hover(100%, 2px, 0px, 0px, -37px, 0px, colors.$orange);
+                        @include mix.underline_hover(100%, 1px, 0px, 0px, -40px, 0px, colors.$orange);
 
                         &:hover {
                             color: darken(colors.$grayish-blue, 63%);
