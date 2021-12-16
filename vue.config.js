@@ -12,7 +12,7 @@ module.exports = {
       .loader('vue-svg-loader');
   },
 
-  //publicPath: '/Ecommerce-product-page/',
+  publicPath: '/Ecommerce-product-page/',
   devServer: {
     proxy: 'http://localhost:8080'
   }
